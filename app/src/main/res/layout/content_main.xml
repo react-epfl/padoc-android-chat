@@ -104,6 +104,16 @@
 
     <Button
         style="?android:attr/buttonStyleSmall"
+        android:onClick="showPeers2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="M"
+        android:id="@+id/sendMsg"
+        android:layout_toRightOf="@+id/sendMsgToGalaxy"
+        android:layout_below="@+id/makeBTInvisible"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
         android:onClick="sendCBS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
