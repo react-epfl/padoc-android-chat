@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.react.gabriel.wbam.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:onClick="startBTDiscovery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+D"
+        android:id="@+id/startBTDiscovery"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:onClick="stopBTDiscovery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-D"
+        android:id="@+id/stopBTDiscovery"
+        android:layout_toRightOf="@+id/startBTDiscovery"
+        android:layout_alignParentTop="true"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:onClick="makeBTVisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+V"
+        android:id="@+id/makeBTVisible"
+        android:layout_toRightOf="@+id/stopBTDiscovery"
+        android:layout_alignParentTop="true"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:onClick="makeBTInvisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-V"
+        android:id="@+id/makeBTInvisible"
+        android:layout_toRightOf="@+id/makeBTVisible"
+        android:layout_alignParentTop="true"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:onClick="startBTServer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+S"
+        android:id="@+id/startBTServer"
+        android:layout_toRightOf="@+id/makeBTInvisible"
+        android:layout_alignParentTop="true"
+        android:nestedScrollingEnabled="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:onClick="unpairDevices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-P"
+        android:id="@+id/unpairDevices"
+        android:layout_toRightOf="@+id/startBTServer"
+        android:layout_alignParentTop="true"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:onClick="sendMsgToWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="W"
+        android:id="@+id/sendMsgToWhite"
+        android:layout_below="@+id/startBTDiscovery"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:onClick="sendMsgToBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="B"
+        android:id="@+id/sendMsgToBlue"
+        android:layout_toRightOf="@+id/sendMsgToWhite"
+        android:layout_below="@+id/stopBTDiscovery"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:onClick="sendMsgToGalaxy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="G"
+        android:id="@+id/sendMsgToGalaxy"
+        android:layout_toRightOf="@+id/sendMsgToBlue"
+        android:layout_below="@+id/stopBTDiscovery"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:onClick="sendCBS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="C"
+        android:id="@+id/sendCBS"
+        android:layout_toRightOf="@+id/startBTServer"
+        android:layout_below="@+id/unpairDevices"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:onClick="startWDDiscovery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+D"
+        android:id="@+id/startWDDiscovery"
+        android:layout_below="@id/sendMsgToWhite"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:onClick="stopWDDiscovery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-D"
+        android:id="@+id/stopWDDiscovery"
+        android:layout_toRightOf="@+id/sendMsgToWhite"
+        android:layout_below="@id/sendMsgToBlue"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:onClick="makeWDVisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+V"
+        android:id="@+id/makeWDVisible"
+        android:layout_toRightOf="@+id/stopWDDiscovery"
+        android:layout_below="@+id/sendMsgToGalaxy"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:onClick="makeWDInvisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-V"
+        android:id="@+id/makeWDInvisible"
+        android:layout_toRightOf="@+id/makeWDVisible"
+        android:layout_above="@+id/console"/>
+
+    <TextView
+        android:id="@+id/console"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:textSize="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/startWDDiscovery" />
+
+</RelativeLayout>
