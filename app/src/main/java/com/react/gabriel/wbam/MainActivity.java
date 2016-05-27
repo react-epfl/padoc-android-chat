@@ -194,18 +194,6 @@ public class MainActivity extends AppCompatActivity {
         padocManager.unpairBluetoothDevices();
     }
 
-    public void sendMsgToWhite(View view){
-        padocManager.sendMsgToWhite("WHITE hello white");
-    }
-
-    public void sendMsgToBlue(View view){
-        padocManager.sendMsgToBlue("BLUE hello blue");
-    }
-
-    public void sendMsgToGalaxy(View view){
-        padocManager.sendMsgToGalaxy("GALAX hello galax");
-    }
-
     public void sendCBS(View view){
         padocManager.sendCBS();
     }
