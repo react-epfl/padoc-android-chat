@@ -13,3 +13,6 @@ This is the ReadMe file for the Padoc library for Android
 * Sometimes the server socket is null and crashes (listenusingrfcommwithservicerecord returns null)
 * Implement connection when the other device is already paired
 * Try connections without bluetooth discovery
+* Turn Wifi on automatically
+* Get Bluetooth and Wifi status when starting
+* Remove time limit on Wifi-Direct discovery

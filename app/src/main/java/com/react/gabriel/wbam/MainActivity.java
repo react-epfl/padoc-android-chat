@@ -214,6 +214,10 @@ public class MainActivity extends AppCompatActivity {
         padocManager.stopWifiDirectService();
     }
 
+    public void initialize(View view){
+        padocManager.initialize();
+    }
+
     //DEBUG
     public void debugPrint(final String msg){
 

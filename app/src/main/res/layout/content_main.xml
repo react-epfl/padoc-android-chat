@@ -132,6 +132,17 @@
         android:layout_toRightOf="@+id/sendMsg"
         android:layout_below="@+id/unpairDevices"/>
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:onClick="initialize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="start"
+        android:id="@+id/initialize"
+        android:layout_below="@id/startWDDiscovery"
+        android:layout_alignLeft="@+id/startWDDiscovery"
+        android:layout_alignRight="@id/sendCBS"/>
+
     <TextView
         android:id="@+id/console"
         android:layout_width="match_parent"
@@ -139,6 +150,6 @@
         android:scrollbars="vertical"
         android:textSize="10dp"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/startWDDiscovery" />
+        android:layout_below="@+id/initialize" />
 
 </RelativeLayout>
