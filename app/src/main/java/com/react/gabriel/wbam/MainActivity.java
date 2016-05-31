@@ -171,11 +171,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startBTDiscovery(View view){
-        padocManager.startBluetoothDiscovery();
+//        padocManager.startBluetoothDiscovery();
     }
 
     public void stopBTDiscovery(View view){
-        padocManager.stopBluetoothDiscovery();
+//        padocManager.stopBluetoothDiscovery();
     }
 
     public void makeBTVisible(View view){
