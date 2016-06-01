@@ -167,6 +167,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onDestroy(){
+
+        debugPrint("destroying...");
+        padocManager.forceStopWifiDirectService();
+        padocManager.stopWifi();
+        debugPrint("destroying...2");
+
         super.onDestroy();
     }
 
@@ -211,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void makeWDInvisible(View view){
-        padocManager.stopWifiDirectService();
+        padocManager.forceStopWifiDirectService();
     }
 
     public void initialize(View view){
