@@ -22,6 +22,7 @@ public class Message {
     //Type of content
     private static final String CONTENT = "content";
     private static final String CONTENT_ID = "content-id";
+    private static final String CONTENT_IDS = "content-ids";
     private static final String CONTENT_MSG = "content-msg";
     private static final String CONTENT_PRIORITY = "content-priority";
 
@@ -65,9 +66,11 @@ public class Message {
             //ContentType
             if(contentType.equals(ContentType.ID)){
                 jsonMsg.put(CONTENT, CONTENT_ID);
-            }else if(contentType.equals(ContentType.MSG)){
+            } else if (contentType.equals(ContentType.IDS)) {
+                jsonMsg.put(CONTENT, CONTENT_IDS);
+            } else if (contentType.equals(ContentType.MSG)) {
                 jsonMsg.put(CONTENT, CONTENT_MSG);
-            }else if(contentType.equals(ContentType.PRIORITY)){
+            } else if (contentType.equals(ContentType.PRIORITY)) {
                 jsonMsg.put(CONTENT, CONTENT_PRIORITY);
             }
 
@@ -89,8 +92,10 @@ public class Message {
         }
     }
 
-    public static Message getIDMsg(String localAddress){
-        return new Message(Algo.IDProp, ContentType.ID, localAddress, localAddress, ALL, 0);
+    public static Message getIDMsg(String name, String localAddress){
+
+        String msgContent = localAddress+"-"+name;
+        return new Message(Algo.IDProp, ContentType.ID, msgContent, localAddress, ALL, 0);
     }
 
     public ContentType getContentType(){
@@ -106,6 +111,8 @@ public class Message {
         switch (content){
             case CONTENT_ID:
                 return ContentType.ID;
+            case CONTENT_IDS:
+                return ContentType.IDS;
             case CONTENT_MSG:
                 return ContentType.MSG;
             default:return null;
