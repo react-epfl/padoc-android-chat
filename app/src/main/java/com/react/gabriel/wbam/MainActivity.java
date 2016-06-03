@@ -1,7 +1,6 @@
 package com.react.gabriel.wbam;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
@@ -36,17 +35,13 @@ public class MainActivity extends AppCompatActivity {
 
     private PadocManager padocManager;
 
-    private Context context;
-
-
     AlertDialog peerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        this.context = getApplicationContext();
 
         //DEBUG
         date = new Date();
@@ -125,17 +120,6 @@ public class MainActivity extends AppCompatActivity {
         lv.setAdapter(simpleAdapter);
         peerDialog.show();
 
-    }
-
-    @Override
-    public void onDestroy(){
-
-        debugPrint("destroying...");
-        padocManager.forceStopWifiDirectService();
-        padocManager.stopWifi();
-        debugPrint("destroying...2");
-
-        super.onDestroy();
     }
 
     public void startBTDiscovery(View view){
