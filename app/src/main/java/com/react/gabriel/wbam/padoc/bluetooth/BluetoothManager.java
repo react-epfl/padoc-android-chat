@@ -84,12 +84,6 @@ public class BluetoothManager extends BroadcastReceiver{
             //Initialize the server thread
 //            this.serverThread = new ServerThread(mActivity, this, btAdapter);
 
-            //TODO I should use these sometime and filter only WBAM paired devices
-            this.pairedDevices = btAdapter.getBondedDevices();
-            if(pairedDevices.size() > 0){
-                mActivity.debugPrint("Found " + pairedDevices.size() + " paired BT devices");
-            }
-
 //            this.isRunning = true;
         }
     }
@@ -119,6 +113,13 @@ public class BluetoothManager extends BroadcastReceiver{
             case STATE_ADAPTER_RUNNING :
 
                 state = State.STATE_SERVER_STARTING;
+
+
+                this.pairedDevices = btAdapter.getBondedDevices();
+                if(pairedDevices.size() > 0){
+                    mActivity.debugPrint("Found " + pairedDevices.size() + " paired BT devices");
+                }
+
                 serverThread = new ServerThread(mActivity, this, btAdapter);
 
                 initialize();
@@ -313,6 +314,7 @@ public class BluetoothManager extends BroadcastReceiver{
             return true;
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println(e.toString());
             return false;
         }
     }
@@ -369,7 +371,7 @@ public class BluetoothManager extends BroadcastReceiver{
 
             mRouter.setConnectedDevice(name, remoteAddress, connectedThread);
 
-            padocManager.connectionSucceeded(remoteAddress);
+            padocManager.connectionSucceeded(name, remoteAddress);
 
             mMessenger.introduceMyselfToThread(connectedThread);
 
@@ -384,8 +386,8 @@ public class BluetoothManager extends BroadcastReceiver{
         }
     }
 
-    public void connectionFailed(String macAddress){
-        padocManager.connectionFailed(macAddress);
+    public void connectionFailed(String name, String macAddress){
+        padocManager.connectionFailed(name, macAddress);
     }
 
     public void connectWith(String name, String btMacAddress){
