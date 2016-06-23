@@ -1,7 +1,8 @@
-package com.react.gabriel.wbam.padoc.bluetooth;
+package com.react.gabriel.wbam.padoc.connection;
 
 import android.bluetooth.BluetoothSocket;
 
+import com.react.gabriel.wbam.MainActivity;
 import com.react.gabriel.wbam.padoc.Message;
 
 import java.io.IOException;
@@ -19,8 +20,11 @@ public class ConnectedThread extends Thread {
     private final OutputStream mmOutStream;
     private String remoteAddress;
 
-    public ConnectedThread(BluetoothManager btManager, BluetoothSocket socket, String remoteAddress) {
+    private MainActivity mActivity;
 
+    public ConnectedThread(MainActivity mainActivity, BluetoothManager btManager, BluetoothSocket socket, String remoteAddress) {
+
+        this.mActivity = mainActivity;
         this.btManager = btManager;
         this.mmSocket = socket;
         this.remoteAddress = remoteAddress;
@@ -39,7 +43,7 @@ public class ConnectedThread extends Thread {
     }
 
     public void run() {
-        byte[] buffer = new byte[1024];  // buffer store for the stream
+        byte[] buffer = new byte[512];  // buffer store for the stream
         int bytes; // bytes returned from read()
 
         // Keep listening to the InputStream until an exception occurs
@@ -50,8 +54,11 @@ public class ConnectedThread extends Thread {
                 //Without Handler
                 bytes = mmInStream.read(buffer);
                 String jsonString = new String(buffer, 0, bytes);
-                Message message = new Message(jsonString);
-                btManager.deliverMsg(message, this);
+//                mActivity.debugPrint("Socket is conn? : " + mmSocket.isConnected());
+//                mActivity.debugPrint("BUFF : " + jsonString);
+                Message message = new Message();
+                if(message.setMessage(jsonString))  btManager.deliverMsg(message, this);
+
 
             } catch (IOException e) {
                 break;
@@ -62,8 +69,10 @@ public class ConnectedThread extends Thread {
     /* Call this from the main activity to send data to the remote device */
     public void write(Message message) {
         try {
-            System.out.println("Sending " + message.toString());
+            System.out.println("Sending " + message.toString().getBytes().length + " bytes");
             byte[] bytes = message.toString().getBytes();
+//            mActivity.debugPrint("Sending out : " + message.toString());
+//            mActivity.debugPrint("Socket is connected ? " + mmSocket.isConnected());
             mmOutStream.write(bytes);
         } catch (IOException e) { }
     }

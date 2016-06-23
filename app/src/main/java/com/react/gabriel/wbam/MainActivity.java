@@ -15,7 +15,10 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.react.gabriel.wbam.padoc.Message;
+import com.react.gabriel.wbam.padoc.Messenger;
 import com.react.gabriel.wbam.padoc.PadocManager;
+import com.react.gabriel.wbam.padoc.TestThread;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -52,6 +55,13 @@ public class MainActivity extends AppCompatActivity {
         //PADOC
         padocManager = new PadocManager(this);
 
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+
+        padocManager.onDestroy();
     }
 
     @Override
@@ -95,13 +105,24 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 HashMap<String, String> selectedPeer = (HashMap) lv.getItemAtPosition(position);
 
-                padocManager.sendMsg(selectedPeer.get("addr"));
-                peerDialog.dismiss();
+                if(selectedPeer.get("addr").equals("ALL")){
+                    padocManager.sendCBS();
+                    peerDialog.dismiss();
+                }else {
+                    padocManager.sendMsg(selectedPeer.get("addr"));
+                    peerDialog.dismiss();
+                }
+
 
             }
         });
 
         List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+
+        Map<String, String> cbsEntry = new HashMap<>();
+        cbsEntry.put("name", "CBS (" + padocManager.getMeshUUID() + ")");
+        cbsEntry.put("addr", "ALL");
+        data.add(cbsEntry);
 
         for (Map.Entry<String, String> peerItem : padocManager.getPeerNames()) {
 
@@ -146,10 +167,6 @@ public class MainActivity extends AppCompatActivity {
         padocManager.unpairBluetoothDevices();
     }
 
-    public void sendCBS(View view){
-        padocManager.sendCBS();
-    }
-
     public void startWDDiscovery(View view){
         padocManager.startWifiDirectDiscovery();
     }
@@ -168,6 +185,105 @@ public class MainActivity extends AppCompatActivity {
 
     public void initialize(View view){
         padocManager.initialize();
+    }
+
+    public void startFLOODTestSlow(View view){
+        TestThread testThread = new TestThread(padocManager);
+        debugPrint("STARTING SLOW FLOOD");
+        testThread.startTest(Message.Algo.FLOOD, 2000, null);
+    }
+
+    public void startFLOODTestMedium(View view){
+        TestThread testThread = new TestThread(padocManager);
+        debugPrint("STARTING MEDIUM FLOOD");
+        testThread.startTest(Message.Algo.FLOOD, 1000, null);
+    }
+
+    public void startFLOODTestFast(View view){
+        TestThread testThread = new TestThread(padocManager);
+        debugPrint("STARTING FAST FLOOD");
+        testThread.startTest(Message.Algo.FLOOD, 500, null);
+    }
+
+    public void startCBSTestSlow(View view){
+        TestThread testThread = new TestThread(padocManager);
+        debugPrint("STARTING SLOW CBS");
+        testThread.startTest(Message.Algo.CBS, 2000, null);
+    }
+
+    public void startCBSTestMedium(View view){
+        TestThread testThread = new TestThread(padocManager);
+        debugPrint("STARTING SLOW CBS");
+        testThread.startTest(Message.Algo.CBS, 1000, null);
+    }
+
+    public void startCBSTestFast(View view){
+        TestThread testThread = new TestThread(padocManager);
+        debugPrint("STARTING SLOW CBS");
+        testThread.startTest(Message.Algo.CBS, 500, null);
+    }
+
+    public void requestFLOODTestSlow(View view){
+        padocManager.requestTest(Message.Type.FLOOD_TEST_REQUEST, 2000);
+        debugPrint("Request for SLOW FLOOD SENT");
+    }
+
+    public void requestFLOODTestMedium(View view){
+        padocManager.requestTest(Message.Type.FLOOD_TEST_REQUEST, 1000);
+        debugPrint("Request for MEDIUM FLOOD SENT");
+    }
+
+    public void requestFLOODTestFast(View view){
+        padocManager.requestTest(Message.Type.FLOOD_TEST_REQUEST, 500);
+        debugPrint("Request for FAST FLOOD SENT");
+    }
+
+    public void requestCBSTestSlow(View view){
+        padocManager.requestTest(Message.Type.CBS_TEST_REQUEST, 2000);
+        debugPrint("Request for SLOW CBS SENT");
+    }
+
+    public void requestCBSTestMedium(View view){
+        padocManager.requestTest(Message.Type.CBS_TEST_REQUEST, 1000);
+        debugPrint("Request for MEDIUM CBS SENT");
+    }
+
+    public void requestCBSTestFast(View view){
+        padocManager.requestTest(Message.Type.CBS_TEST_REQUEST, 500);
+        debugPrint("Request for FAST CBS SENT");
+    }
+
+    public void requestROUTETestSlow(View view){
+        padocManager.requestTest(Message.Type.ROUTE_TEST_REQUEST, 2000);
+        debugPrint("Request for SLOW ROUTE SENT");
+    }
+
+    public void requestROUTETestMedium(View view){
+        padocManager.requestTest(Message.Type.ROUTE_TEST_REQUEST, 1000);
+        debugPrint("Request for MEDIUM ROUTE SENT");
+    }
+
+    public void requestROUTETestFast(View view){
+        padocManager.requestTest(Message.Type.ROUTE_TEST_REQUEST, 500);
+        debugPrint("Request for FAST ROUTE SENT");
+    }
+
+    public void sendCBS(View view){
+        padocManager.sendCBS();
+    }
+
+    public void sendFLOOD(View view){
+        padocManager.sendFLOOD();
+    }
+
+    public void showMessageCount(View view){
+        padocManager.showTestResults();
+    }
+
+    public void clearMessageCount(View view){
+        padocManager.clearMessageCount();
+        console.setText("");
+        debugPrint("OK");
     }
 
     //DEBUG

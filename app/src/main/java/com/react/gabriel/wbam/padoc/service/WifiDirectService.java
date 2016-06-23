@@ -1,4 +1,4 @@
-package com.react.gabriel.wbam.padoc.wifidirect;
+package com.react.gabriel.wbam.padoc.service;
 
 import android.content.Context;
 import android.net.wifi.p2p.WifiP2pManager;
@@ -6,10 +6,10 @@ import android.net.wifi.p2p.nsd.WifiP2pDnsSdServiceInfo;
 import android.net.wifi.p2p.nsd.WifiP2pServiceInfo;
 
 import com.react.gabriel.wbam.MainActivity;
-import com.react.gabriel.wbam.padoc.PadocManager;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by gabriel on 25/05/16.
@@ -34,10 +34,12 @@ public class WifiDirectService {
      * When specifying custom actionListener, do not forget to set serviceIsRunning
      * @param actionListener
      */
-    public void startService(String btName, String btMAC, WifiP2pManager.ActionListener actionListener) {
+    public void startService(String meshUUID, String btName, String btMAC, WifiP2pManager.ActionListener actionListener) {
         if(!serviceIsRunning){
             Map<String, String> values = new HashMap<String, String>();
             //http://files.dns-sd.org/draft-cheshire-dnsext-dns-sd.txt | Sections 6.5 & 6.6
+
+            values.put(WifiDirectManager.BTMESH, meshUUID);
             values.put(WifiDirectManager.BTMAC, btMAC);
             values.put(WifiDirectManager.BTNAME, btName);
 
@@ -90,6 +92,25 @@ public class WifiDirectService {
         }
     }
 
+    public void restart(final String meshUUID, final String btName, final String btMAC){
+        if(serviceIsRunning) {
+            mManager.clearLocalServices(mChannel, new WifiP2pManager.ActionListener() {
+                public void onSuccess() {
+                    serviceIsRunning = false;
+                    startService(meshUUID, btName, btMAC, null);
+//                        mActivity.debugPrint("PADOC service is OFF");
+                }
+
+                public void onFailure(int reason) {
+                    serviceIsRunning = true;
+                    mActivity.debugPrint("Error: Could not reset PADOC Service");
+                }
+            });
+        }else {
+            mActivity.debugPrint("Error: PADOC Service is already OFF");
+        }
+    }
+
     public void forceStopService(){
         mManager.clearLocalServices(mChannel, new WifiP2pManager.ActionListener() {
             public void onSuccess() {
@@ -102,6 +123,10 @@ public class WifiDirectService {
                 mActivity.debugPrint("Error: Could not clear PADOC Service");
             }
         });
+    }
+
+    public boolean isRunning(){
+        return this.serviceIsRunning;
     }
 
     public void setServiceIsRunning(boolean isRunning){

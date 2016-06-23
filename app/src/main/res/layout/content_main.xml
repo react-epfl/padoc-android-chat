@@ -12,125 +12,178 @@
     tools:context="com.react.gabriel.wbam.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:onClick="startBTDiscovery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+D"
-        android:id="@+id/startBTDiscovery"
+    <!-- MESSAGE BUTTONS -->
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:id="@+id/msg_count_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:onClick="stopBTDiscovery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-D"
-        android:id="@+id/stopBTDiscovery"
-        android:layout_toRightOf="@+id/startBTDiscovery"
-        android:layout_alignParentTop="true"/>
+        <Button
+            android:layout_weight="1"
+            style="?android:attr/buttonStyleSmall"
+            android:onClick="showPeers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MSG"
+            android:id="@+id/bigShowPeers"/>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:onClick="makeBTVisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+V"
-        android:id="@+id/makeBTVisible"
-        android:layout_toRightOf="@+id/stopBTDiscovery"
-        android:layout_alignParentTop="true"/>
+        <Button
+            android:layout_weight="1"
+            style="?android:attr/buttonStyleSmall"
+            android:onClick="showMessageCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MSG COUNT"
+            android:id="@+id/showMessageCount"/>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:onClick="makeBTInvisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-V"
-        android:id="@+id/makeBTInvisible"
-        android:layout_toRightOf="@+id/makeBTVisible"
-        android:layout_alignParentTop="true"/>
+        <Button
+            android:layout_weight="1"
+            style="?android:attr/buttonStyleSmall"
+            android:onClick="clearMessageCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CLR COUNT"
+            android:id="@+id/clearMessageCount"/>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:onClick="startBTServer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+S"
-        android:id="@+id/startBTServer"
-        android:layout_toRightOf="@+id/makeBTInvisible"
-        android:layout_alignParentTop="true"
-        android:nestedScrollingEnabled="true" />
+    </LinearLayout>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:onClick="unpairDevices"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-P"
-        android:id="@+id/unpairDevices"
-        android:layout_toRightOf="@+id/startBTServer"
-        android:layout_alignParentTop="true"/>
+    <!-- FLOOD BUTTONS -->
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:onClick="startWDDiscovery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+D"
-        android:id="@+id/startWDDiscovery"
-        android:layout_below="@id/startBTDiscovery"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_below="@id/msg_count_buttons"
+        android:id="@+id/flood_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:onClick="stopWDDiscovery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-D"
-        android:id="@+id/stopWDDiscovery"
-        android:layout_toRightOf="@+id/startWDDiscovery"
-        android:layout_below="@id/stopBTDiscovery"/>
+        <Button
+            android:layout_weight="1"
+            style="?android:attr/buttonStyleSmall"
+            android:onClick="startFLOODTestMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FLO"
+            android:id="@+id/startFLOODTestMedium"/>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:onClick="makeWDVisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+V"
-        android:id="@+id/makeWDVisible"
-        android:layout_toRightOf="@+id/stopWDDiscovery"
-        android:layout_below="@+id/makeBTVisible"/>
+        <Button
+            android:layout_weight="1"
+            style="?android:attr/buttonStyleSmall"
+            android:onClick="requestFLOODTestSlow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RFS"
+            android:id="@+id/requestFLOODTestSlow"/>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:onClick="makeWDInvisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-V"
-        android:id="@+id/makeWDInvisible"
-        android:layout_toRightOf="@+id/makeWDVisible"
-        android:layout_below="@+id/makeBTInvisible"/>
+        <Button
+            android:layout_weight="1"
+            style="?android:attr/buttonStyleSmall"
+            android:onClick="requestFLOODTestMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RFM"
+            android:id="@+id/requestFLOODTestMedium"/>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:onClick="showPeers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="M"
-        android:id="@+id/sendMsg"
-        android:layout_toRightOf="@+id/makeWDInvisible"
-        android:layout_below="@+id/startBTServer"/>
+        <Button
+            android:layout_weight="1"
+            style="?android:attr/buttonStyleSmall"
+            android:onClick="requestFLOODTestFast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RFF"
+            android:id="@+id/requestFLOODTestFast"/>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:onClick="sendCBS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="C"
-        android:id="@+id/sendCBS"
-        android:layout_toRightOf="@+id/sendMsg"
-        android:layout_below="@+id/unpairDevices"/>
+    </LinearLayout>
+
+    <!-- CBS BUTTONS -->
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_below="@id/flood_buttons"
+        android:id="@+id/cbs_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_weight="1"
+            style="?android:attr/buttonStyleSmall"
+            android:onClick="startCBSTestMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CBS"
+            android:id="@+id/startCBSTestMedium"/>
+
+        <Button
+            android:layout_weight="1"
+            style="?android:attr/buttonStyleSmall"
+            android:onClick="requestCBSTestSlow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RCS"
+            android:id="@+id/requestCBSTestSlow"/>
+
+        <Button
+            android:layout_weight="1"
+            style="?android:attr/buttonStyleSmall"
+            android:onClick="requestCBSTestMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RCM"
+            android:id="@+id/requestCBSTestMedium"/>
+
+        <Button
+            android:layout_weight="1"
+            style="?android:attr/buttonStyleSmall"
+            android:onClick="requestCBSTestFast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RCF"
+            android:id="@+id/requestCBSTestFast"/>
+
+    </LinearLayout>
+
+    <!-- ROUTE BUTTONS -->
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_below="@id/cbs_buttons"
+        android:id="@+id/route_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_weight="1"
+            style="?android:attr/buttonStyleSmall"
+            android:onClick="requestROUTETestSlow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RRS"
+            android:id="@+id/requestROUTETestSlow"/>
+
+        <Button
+            android:layout_weight="1"
+            style="?android:attr/buttonStyleSmall"
+            android:onClick="requestROUTETestMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RRM"
+            android:id="@+id/requestROUTETestMedium"/>
+
+        <Button
+            android:layout_weight="1"
+            style="?android:attr/buttonStyleSmall"
+            android:onClick="requestROUTETestFast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RRF"
+            android:id="@+id/requestROUTETestFast"/>
+
+    </LinearLayout>
+
+    <!-- START BUTTON -->
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -139,9 +192,9 @@
         android:layout_height="wrap_content"
         android:text="start"
         android:id="@+id/initialize"
-        android:layout_below="@id/startWDDiscovery"
-        android:layout_alignLeft="@+id/startWDDiscovery"
-        android:layout_alignRight="@id/sendCBS"/>
+        android:layout_below="@id/route_buttons"/>
+
+     <!--CONSOLE -->
 
     <TextView
         android:id="@+id/console"

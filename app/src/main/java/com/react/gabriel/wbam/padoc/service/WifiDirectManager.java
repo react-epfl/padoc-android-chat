@@ -1,4 +1,4 @@
-package com.react.gabriel.wbam.padoc.wifidirect;
+package com.react.gabriel.wbam.padoc.service;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -14,6 +14,7 @@ import com.react.gabriel.wbam.padoc.PadocManager;
  */
 public class WifiDirectManager extends BroadcastReceiver {
 
+    public static final String BTMESH = "btmesh";
     public static final String BTMAC = "btmac";
     public static final String BTNAME = "btname";
 
@@ -98,7 +99,7 @@ public class WifiDirectManager extends BroadcastReceiver {
                     @Override
                     public void onSuccess() {
                         wdService.setServiceIsRunning(true);
-                        mActivity.debugPrint("PADOC service added successfully");
+//                        mActivity.debugPrint("PADOC service added successfully");
                         state = State.STATE_SERVICE_REGISTERED;
                         initialize();
                     }
@@ -146,7 +147,7 @@ public class WifiDirectManager extends BroadcastReceiver {
 
             if (state == WifiP2pManager.WIFI_P2P_STATE_ENABLED) {
                 // Wifi Direct mode is enabled
-                mActivity.debugPrint("WiFi-Direct ENABLED");
+//                mActivity.debugPrint("WiFi-Direct ENABLED");
 
                 if(this.state.equals(State.STATE_WIFI_P2P_STARTING)) {
                     this.state = State.STATE_WIFI_P2P_ENABLED;
@@ -154,7 +155,7 @@ public class WifiDirectManager extends BroadcastReceiver {
                 }
             } else {
                 // Wi-Fi P2P is not enabled
-                mActivity.debugPrint("WiFi-Direct DISABLED");
+//                mActivity.debugPrint("WiFi-Direct DISABLED");
 
                 if(this.state.equals(State.STATE_WIFI_P2P_RESETTING)){
                     if(wifiManager.setWifiEnabled(true)) {
@@ -168,13 +169,27 @@ public class WifiDirectManager extends BroadcastReceiver {
     }
 
     public void startService(WifiP2pManager.ActionListener actionListener) {
-        String btAddress = padocManager.getLocalBluetoothAddress();
+        String btAddress = padocManager.getLocalAddress();
         String btName = padocManager.getLocalName();
+        String meshUUID = padocManager.getMeshUUID();
+
         if(btAddress != null){
-            wdService.startService(btName, btAddress, actionListener);
+            wdService.startService(meshUUID, btName, btAddress, actionListener);
         }else {
             padocManager.debugPrint("ERROR : local Bluetooth address is missing!");
         }
+    }
+
+    public void restartService(){
+        wdService.restart(padocManager.getMeshUUID(), padocManager.getLocalName(), padocManager.getLocalAddress());
+    }
+
+    public boolean discoveryIsRunning(){
+        return this.wdDiscovery.isRunning();
+    }
+
+    public boolean serviceIsRunning(){
+        return this.wdService.isRunning();
     }
 
     public void stopService(){
@@ -197,8 +212,8 @@ public class WifiDirectManager extends BroadcastReceiver {
         wifiManager.setWifiEnabled(false);
     }
 
-    public void handleNewWifiDirectDiscovery(String name, String btMacAddress){
-        padocManager.handleNewWifiDirectDiscovery(name, btMacAddress);
+    public void handleNewPadocDiscovery(String btMacAddress, String name, String meshUUID){
+        padocManager.handleNewPadocDiscovery(btMacAddress, name, meshUUID);
     }
 
     //Getters
