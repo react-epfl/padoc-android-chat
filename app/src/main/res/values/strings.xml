@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">PadocChat</string>
     <string name="action_settings">Settings</string>
+
+    <string name="RANDOM_VALUE">rv</string>
+    <string name="MESH_UUID_VALUE">mesh</string>
+    <string name="BTMAC_VALUE">btmac</string>
+    <string name="SSID_VALUE">ssid</string>
+    <string name="PASS_VALUE">pass</string>
 </resources>

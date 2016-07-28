@@ -12,189 +12,7 @@
     tools:context="com.react.gabriel.wbam.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <!-- MESSAGE BUTTONS -->
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/msg_count_buttons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:layout_weight="1"
-            style="?android:attr/buttonStyleSmall"
-            android:onClick="showPeers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MSG"
-            android:id="@+id/bigShowPeers"/>
-
-        <Button
-            android:layout_weight="1"
-            style="?android:attr/buttonStyleSmall"
-            android:onClick="showMessageCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MSG COUNT"
-            android:id="@+id/showMessageCount"/>
-
-        <Button
-            android:layout_weight="1"
-            style="?android:attr/buttonStyleSmall"
-            android:onClick="clearMessageCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CLR COUNT"
-            android:id="@+id/clearMessageCount"/>
-
-    </LinearLayout>
-
-    <!-- FLOOD BUTTONS -->
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_below="@id/msg_count_buttons"
-        android:id="@+id/flood_buttons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:layout_weight="1"
-            style="?android:attr/buttonStyleSmall"
-            android:onClick="startFLOODTestMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="FLO"
-            android:id="@+id/startFLOODTestMedium"/>
-
-        <Button
-            android:layout_weight="1"
-            style="?android:attr/buttonStyleSmall"
-            android:onClick="requestFLOODTestSlow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RFS"
-            android:id="@+id/requestFLOODTestSlow"/>
-
-        <Button
-            android:layout_weight="1"
-            style="?android:attr/buttonStyleSmall"
-            android:onClick="requestFLOODTestMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RFM"
-            android:id="@+id/requestFLOODTestMedium"/>
-
-        <Button
-            android:layout_weight="1"
-            style="?android:attr/buttonStyleSmall"
-            android:onClick="requestFLOODTestFast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RFF"
-            android:id="@+id/requestFLOODTestFast"/>
-
-    </LinearLayout>
-
-    <!-- CBS BUTTONS -->
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_below="@id/flood_buttons"
-        android:id="@+id/cbs_buttons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:layout_weight="1"
-            style="?android:attr/buttonStyleSmall"
-            android:onClick="startCBSTestMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CBS"
-            android:id="@+id/startCBSTestMedium"/>
-
-        <Button
-            android:layout_weight="1"
-            style="?android:attr/buttonStyleSmall"
-            android:onClick="requestCBSTestSlow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RCS"
-            android:id="@+id/requestCBSTestSlow"/>
-
-        <Button
-            android:layout_weight="1"
-            style="?android:attr/buttonStyleSmall"
-            android:onClick="requestCBSTestMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RCM"
-            android:id="@+id/requestCBSTestMedium"/>
-
-        <Button
-            android:layout_weight="1"
-            style="?android:attr/buttonStyleSmall"
-            android:onClick="requestCBSTestFast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RCF"
-            android:id="@+id/requestCBSTestFast"/>
-
-    </LinearLayout>
-
-    <!-- ROUTE BUTTONS -->
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_below="@id/cbs_buttons"
-        android:id="@+id/route_buttons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:layout_weight="1"
-            style="?android:attr/buttonStyleSmall"
-            android:onClick="requestROUTETestSlow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RRS"
-            android:id="@+id/requestROUTETestSlow"/>
-
-        <Button
-            android:layout_weight="1"
-            style="?android:attr/buttonStyleSmall"
-            android:onClick="requestROUTETestMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RRM"
-            android:id="@+id/requestROUTETestMedium"/>
-
-        <Button
-            android:layout_weight="1"
-            style="?android:attr/buttonStyleSmall"
-            android:onClick="requestROUTETestFast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RRF"
-            android:id="@+id/requestROUTETestFast"/>
-
-    </LinearLayout>
-
-    <!-- START BUTTON -->
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:onClick="initialize"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="start"
-        android:id="@+id/initialize"
-        android:layout_below="@id/route_buttons"/>
-
-     <!--CONSOLE -->
+    <!--CONSOLE -->
 
     <TextView
         android:id="@+id/console"
@@ -202,7 +20,19 @@
         android:layout_height="match_parent"
         android:scrollbars="vertical"
         android:textSize="10dp"
+        android:layout_alignParentBottom="true" />
+
+    <!-- MESSAGE BUTTONS -->
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:onClick="sendMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/initialize" />
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@color/colorPrimary"
+        android:src="@android:drawable/ic_menu_edit" />
 
 </RelativeLayout>

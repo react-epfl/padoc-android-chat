@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--General Padoc Settings-->
+
+    <!--Maximum should be 4 since an Android Wifi-Direct device will not accept more connections-->
+    <integer name="MAX_WIFI_CONNECTIONS">4</integer>
+
+    <!--A minimum number of bluetooth connections is needed in order to form a mesh-->
+    <integer name="MIN_BLUETOOTH_CONNECTIONS">1</integer>
+    <integer name="MAX_BLUETOOTH_CONNECTIONS">1</integer>
+
+</resources>

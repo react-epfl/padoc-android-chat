@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--GENERAL PADOC SETTINGS-->
+    <string name="PADOC_UUID">aa40d6d0-16b0-11e6-bdf4-0800200c9a66</string>
+    <string name="NULL_MESH_ID">-1</string>
+    <integer name="MAX_RANDOM_VALUE">1000</integer>
+
+
+</resources>
