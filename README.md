@@ -1,3 +1,3 @@
-# padoc-android-chat
+# PadocChat
 
-Android P2P chat application that uses Padoc library
+Android multihop P2P chat proof of concept application
